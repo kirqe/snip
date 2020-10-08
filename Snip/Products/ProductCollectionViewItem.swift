@@ -1,5 +1,5 @@
 //
-//  ProductsCollectionViewController.swift
+//  ProductCollectionViewItem.swift
 //  Snip
 //
 //  Created by Kirill Beletskiy on 08/10/2020.
@@ -8,8 +8,10 @@
 
 import Cocoa
 
-class ProductsCollectionViewController: NSViewController {
-
+class ProductCollectionViewItem: NSCollectionViewItem {
+    
+    static let reuseIdentifier = NSUserInterfaceItemIdentifier("ProductCollectionViewItemIdentifier")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
