@@ -11,6 +11,7 @@ import Cocoa
 class ProductsCollectionViewController: NSViewController {
     
     @IBOutlet var productsCollectionView: NSCollectionView!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
