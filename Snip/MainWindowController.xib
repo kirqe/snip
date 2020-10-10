@@ -13,19 +13,49 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="F0z-JX-Cv5">
+        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" titleVisibility="hidden" id="F0z-JX-Cv5">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="480" height="270"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1177"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+            <value key="minSize" type="size" width="1000" height="500"/>
             <view key="contentView" id="se5-gp-TjO">
                 <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
-                <autoresizingMask key="autoresizingMask"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             </view>
+            <toolbar key="toolbar" implicitIdentifier="AFCE5FD5-77AB-40D4-B3DD-0E9C2C70DB27" autosavesConfiguration="NO" showsBaselineSeparator="NO" displayMode="iconOnly" sizeMode="regular" id="Oyq-EQ-Nyx">
+                <allowedToolbarItems>
+                    <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="bL5-l9-KxK"/>
+                    <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="yeq-Nu-oPJ"/>
+                    <toolbarItem implicitItemIdentifier="17032FC8-9624-4CF5-A9F2-6A587869BF63" label="Custom View" paletteLabel="Custom View" image="NSRefreshTemplate" id="xfW-Pm-t0D">
+                        <nil key="toolTip"/>
+                        <size key="minSize" width="50" height="25"/>
+                        <size key="maxSize" width="127" height="25"/>
+                        <button key="view" verticalHuggingPriority="750" id="QSL-Ws-7HP">
+                            <rect key="frame" x="0.0" y="14" width="127" height="25"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <buttonCell key="cell" type="roundTextured" title="Textured Rounded" bezelStyle="texturedRounded" image="NSRefreshTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="WEY-dD-Djz">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="myActionWithSender:" target="-2" id="aes-XP-Z6j"/>
+                            </connections>
+                        </button>
+                    </toolbarItem>
+                </allowedToolbarItems>
+                <defaultToolbarItems>
+                    <toolbarItem reference="xfW-Pm-t0D"/>
+                    <toolbarItem reference="yeq-Nu-oPJ"/>
+                </defaultToolbarItems>
+            </toolbar>
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
             <point key="canvasLocation" x="139" y="147"/>
         </window>
     </objects>
+    <resources>
+        <image name="NSRefreshTemplate" width="11" height="15"/>
+    </resources>
 </document>

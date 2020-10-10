@@ -17,6 +17,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
         mainWindowController.showWindow(nil)
+        UserDefaults.standard.set(true, forKey: "NSConstraintBasedLayoutVisualizeMutuallyExclusiveConstraints")
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

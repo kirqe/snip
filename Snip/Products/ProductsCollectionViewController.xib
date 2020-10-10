@@ -9,6 +9,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="ProductsCollectionViewController" customModule="Snip" customModuleProvider="target">
             <connections>
                 <outlet property="productsCollectionView" destination="T7U-p2-lOz" id="qq9-8C-8GR"/>
+                <outlet property="progressIndicator" destination="1CS-yu-4DR" id="LRI-yn-zVK"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
@@ -46,12 +47,17 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                 </scrollView>
+                <progressIndicator wantsLayer="YES" maxValue="100" displayedWhenStopped="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="1CS-yu-4DR">
+                    <rect key="frame" x="232" y="10" width="16" height="16"/>
+                </progressIndicator>
             </subviews>
             <constraints>
                 <constraint firstItem="dO7-vP-3tt" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="QEA-0f-gzu"/>
                 <constraint firstItem="dO7-vP-3tt" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="ajO-fD-XqF"/>
                 <constraint firstAttribute="bottom" secondItem="dO7-vP-3tt" secondAttribute="bottom" id="k2j-iy-ZA8"/>
                 <constraint firstAttribute="trailing" secondItem="dO7-vP-3tt" secondAttribute="trailing" id="lb0-3m-IPo"/>
+                <constraint firstAttribute="bottom" secondItem="1CS-yu-4DR" secondAttribute="bottom" constant="10" id="pCm-8Z-vXX"/>
+                <constraint firstItem="1CS-yu-4DR" firstAttribute="centerX" secondItem="Hz6-mo-xeY" secondAttribute="centerX" id="stf-l7-n4v"/>
             </constraints>
             <point key="canvasLocation" x="139" y="154"/>
         </customView>
