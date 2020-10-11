@@ -19,6 +19,10 @@
 		072FCFA2252F4D880092F4A4 /* ProductsCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 072FCFA0252F4D880092F4A4 /* ProductsCollectionViewController.xib */; };
 		072FCFA6252F4E550092F4A4 /* ProductCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072FCFA4252F4E550092F4A4 /* ProductCollectionViewItem.swift */; };
 		072FCFA7252F4E550092F4A4 /* ProductCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 072FCFA5252F4E550092F4A4 /* ProductCollectionViewItem.xib */; };
+		0774F7AD25326CD800A619FF /* ProductCollectionViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0774F7AC25326CD800A619FF /* ProductCollectionViewViewModel.swift */; };
+		07854EEB2533095B0098A311 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07854EEA2533095B0098A311 /* Protocols.swift */; };
+		079F15772533199C00C0A539 /* EmptyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079F15752533199C00C0A539 /* EmptyViewController.swift */; };
+		079F15782533199C00C0A539 /* EmptyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 079F15762533199C00C0A539 /* EmptyViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +41,10 @@
 		072FCFA0252F4D880092F4A4 /* ProductsCollectionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductsCollectionViewController.xib; sourceTree = "<group>"; };
 		072FCFA4252F4E550092F4A4 /* ProductCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewItem.swift; sourceTree = "<group>"; };
 		072FCFA5252F4E550092F4A4 /* ProductCollectionViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductCollectionViewItem.xib; sourceTree = "<group>"; };
+		0774F7AC25326CD800A619FF /* ProductCollectionViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewViewModel.swift; sourceTree = "<group>"; };
+		07854EEA2533095B0098A311 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		079F15752533199C00C0A539 /* EmptyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyViewController.swift; sourceTree = "<group>"; };
+		079F15762533199C00C0A539 /* EmptyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +85,7 @@
 		072FCF85252F4BCB0092F4A4 /* Snip */ = {
 			isa = PBXGroup;
 			children = (
+				07854EE9253309430098A311 /* Other */,
 				07070A2F252F8A2D007299DC /* Models */,
 				072FCFA3252F4DF50092F4A4 /* Products */,
 				072FCF86252F4BCB0092F4A4 /* AppDelegate.swift */,
@@ -99,8 +108,19 @@
 				072FCFA0252F4D880092F4A4 /* ProductsCollectionViewController.xib */,
 				072FCFA4252F4E550092F4A4 /* ProductCollectionViewItem.swift */,
 				072FCFA5252F4E550092F4A4 /* ProductCollectionViewItem.xib */,
+				0774F7AC25326CD800A619FF /* ProductCollectionViewViewModel.swift */,
+				079F15752533199C00C0A539 /* EmptyViewController.swift */,
+				079F15762533199C00C0A539 /* EmptyViewController.xib */,
 			);
 			path = Products;
+			sourceTree = "<group>";
+		};
+		07854EE9253309430098A311 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				07854EEA2533095B0098A311 /* Protocols.swift */,
+			);
+			path = Other;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -161,6 +181,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				079F15782533199C00C0A539 /* EmptyViewController.xib in Resources */,
 				072FCFA2252F4D880092F4A4 /* ProductsCollectionViewController.xib in Resources */,
 				072FCF8C252F4BCC0092F4A4 /* Assets.xcassets in Resources */,
 				072FCF9A252F4BF20092F4A4 /* MainWindowController.xib in Resources */,
@@ -178,7 +199,10 @@
 			files = (
 				072FCFA1252F4D880092F4A4 /* ProductsCollectionViewController.swift in Sources */,
 				072FCFA6252F4E550092F4A4 /* ProductCollectionViewItem.swift in Sources */,
+				079F15772533199C00C0A539 /* EmptyViewController.swift in Sources */,
 				072FCF87252F4BCB0092F4A4 /* AppDelegate.swift in Sources */,
+				07854EEB2533095B0098A311 /* Protocols.swift in Sources */,
+				0774F7AD25326CD800A619FF /* ProductCollectionViewViewModel.swift in Sources */,
 				07070A2E252F7D94007299DC /* Requests.swift in Sources */,
 				072FCF8A252F4BCB0092F4A4 /* Snip.xcdatamodeld in Sources */,
 				072FCF99252F4BF20092F4A4 /* MainWindowController.swift in Sources */,

@@ -65,6 +65,6 @@ func dataRequest<T: Decodable>(with url: String, objectType: T.Type, completion:
 
 // https://stackoverflow.com/a/55001369/1231365
 func escape(string: String) -> String {
-    let allowedCharacters = string.addingPercentEncoding(withAllowedCharacters: CharacterSet(charactersIn: ":=\"#%/<>?@\\^`{|}").inverted) ?? ""
+    let allowedCharacters = string.replacingOccurrences(of: " ", with: "+").addingPercentEncoding(withAllowedCharacters: CharacterSet(charactersIn: ":=\"#%/<>?@\\^`{|}").inverted) ?? ""
     return allowedCharacters
 }

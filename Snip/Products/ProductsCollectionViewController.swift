@@ -8,15 +8,36 @@
 
 import Cocoa
 
-@objc protocol SomeDelegate {
-    func logText(title: String)
-}
+
 
 class ProductsCollectionViewController: NSViewController {
 
     var products: [Product]   = []
     var nextPage: String = ""
+    var totalNumOfProducts: Int = 0
 
+    func search(term: String) {
+        
+        
+        dataRequest(with: "https://api.ebay.com/buy/browse/v1/item_summary/search?q=\(escape(string: term))", objectType: ProductsPage.self) { (result: Result) in
+            switch result {
+            case .success(let object):
+                print(object.itemSummaries)
+                self.products = object.itemSummaries ?? []
+                self.nextPage = object.next ?? ""
+                self.totalNumOfProducts = object.total ?? 0
+                
+                DispatchQueue.main.async {
+                    self.productsCollectionView.reloadData()
+                }
+                
+            case .failure(let error):
+                print(error)
+            }
+        }
+        
+    }
+    
     
     func logText(title: String) {
         print(title)
@@ -47,7 +68,9 @@ class ProductsCollectionViewController: NSViewController {
         super.viewDidLoad()
         // Do view setup here.
         
-         setCollectionView()
+        setCollectionView()
+        
+  
     }
     
     private func setCollectionView() {
@@ -74,8 +97,10 @@ class ProductsCollectionViewController: NSViewController {
 extension ProductsCollectionViewController: NSCollectionViewDataSource, NSCollectionViewDelegate {
     func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
         if products.count > 0 {
+//            self.productsCollectionView.backgroundView = nil
             return products.count
         }
+//        self.productsCollectionView.backgroundView = EmptyViewController().view
         return 0
     }
     
@@ -122,22 +147,30 @@ extension ProductsCollectionViewController: NSCollectionViewDataSource, NSCollec
     
     
     func collectionView(_ collectionView: NSCollectionView, willDisplay item: NSCollectionViewItem, forRepresentedObjectAt indexPath: IndexPath) {
-        if indexPath.item == self.products.count - 1 {
+        if indexPath.item == self.products.count - 1  && self.products.count < self.totalNumOfProducts {
+            
+            
             progressIndicator.startAnimation(self)
             dataRequest(with: self.nextPage, objectType: ProductsPage.self) { (result: Result) in
                switch result {
                case .success(let object):
-                   print(object.itemSummaries)
+//                   print(object.itemSummaries)
+                print(self.nextPage)
 //                   self.products.append(contentsOf: object.itemSummaries!)
                    self.nextPage = object.next ?? ""
                    
                    
-                   let newIndexPath = IndexPath(item: self.products.count, section: 0)
-                   self.products.append(contentsOf: object.itemSummaries!)
-                   DispatchQueue.main.async {
-                        self.productsCollectionView.insertItems(at: [newIndexPath])
-                        self.progressIndicator.stopAnimation(self)
-                   }
+                        let newIndexPath = IndexPath(item: self.products.count, section: 0)
+                        self.products.append(contentsOf: object.itemSummaries!)
+                        DispatchQueue.main.async {
+                             self.productsCollectionView.insertItems(at: [newIndexPath])
+                             self.progressIndicator.stopAnimation(self)
+                        }
+                   
+                   
+                   
+                   
+                   
 
                    
                case .failure(let error):
@@ -145,6 +178,7 @@ extension ProductsCollectionViewController: NSCollectionViewDataSource, NSCollec
                }
            }
         }
+
 
     }
 }

@@ -8,6 +8,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MainWindowController" customModule="Snip" customModuleProvider="target">
             <connections>
+                <outlet property="regularSearchField" destination="HXD-IN-vhF" id="y1U-Jb-2w9"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -17,22 +18,22 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="480" height="270"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1177"/>
             <value key="minSize" type="size" width="1000" height="500"/>
             <view key="contentView" id="se5-gp-TjO">
                 <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             </view>
-            <toolbar key="toolbar" implicitIdentifier="AFCE5FD5-77AB-40D4-B3DD-0E9C2C70DB27" autosavesConfiguration="NO" showsBaselineSeparator="NO" displayMode="iconOnly" sizeMode="regular" id="Oyq-EQ-Nyx">
+            <toolbar key="toolbar" implicitIdentifier="AFCE5FD5-77AB-40D4-B3DD-0E9C2C70DB27" centeredItem="tGU-pY-4P1" autosavesConfiguration="NO" showsBaselineSeparator="NO" displayMode="iconOnly" sizeMode="regular" id="Oyq-EQ-Nyx">
                 <allowedToolbarItems>
                     <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="bL5-l9-KxK"/>
                     <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="yeq-Nu-oPJ"/>
                     <toolbarItem implicitItemIdentifier="17032FC8-9624-4CF5-A9F2-6A587869BF63" label="Custom View" paletteLabel="Custom View" image="NSRefreshTemplate" id="xfW-Pm-t0D">
                         <nil key="toolTip"/>
                         <size key="minSize" width="50" height="25"/>
-                        <size key="maxSize" width="127" height="25"/>
+                        <size key="maxSize" width="51" height="25"/>
                         <button key="view" verticalHuggingPriority="750" id="QSL-Ws-7HP">
-                            <rect key="frame" x="0.0" y="14" width="127" height="25"/>
+                            <rect key="frame" x="13" y="14" width="51" height="25"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <buttonCell key="cell" type="roundTextured" title="Textured Rounded" bezelStyle="texturedRounded" image="NSRefreshTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="WEY-dD-Djz">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -43,10 +44,24 @@
                             </connections>
                         </button>
                     </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="2482CEBE-309F-430E-AE00-FE6A810086A8" label="Custom View" paletteLabel="Custom View" sizingBehavior="auto" id="tGU-pY-4P1">
+                        <nil key="toolTip"/>
+                        <searchField key="view" wantsLayer="YES" verticalHuggingPriority="750" textCompletion="NO" id="HXD-IN-vhF">
+                            <rect key="frame" x="0.0" y="14" width="200" height="22"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" recentsAutosaveName="" id="Yyp-T4-Iec">
+                                <font key="font" metaFont="system"/>
+                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </searchFieldCell>
+                        </searchField>
+                    </toolbarItem>
                 </allowedToolbarItems>
                 <defaultToolbarItems>
-                    <toolbarItem reference="xfW-Pm-t0D"/>
                     <toolbarItem reference="yeq-Nu-oPJ"/>
+                    <toolbarItem reference="tGU-pY-4P1"/>
+                    <toolbarItem reference="yeq-Nu-oPJ"/>
+                    <toolbarItem reference="xfW-Pm-t0D"/>
                 </defaultToolbarItems>
             </toolbar>
             <connections>
