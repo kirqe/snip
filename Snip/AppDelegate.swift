@@ -12,12 +12,25 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     lazy var mainWindowController = MainWindowController()
+    lazy var preferencesWindowController = PreferencesWindowController()
 
-
+    @IBAction func openPreferencesWindow(_ sender: Any) {
+        
+        preferencesWindowController.showWindow(nil)
+    }
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
         mainWindowController.showWindow(nil)
+//        UserDefaults.standard.clear()
         UserDefaults.standard.set(true, forKey: "NSConstraintBasedLayoutVisualizeMutuallyExclusiveConstraints")
+        
+//        print(UserDefaults.standard.object(forKey: "applicationAccessToken")!)
+        
+        
+        getApplicationAccessToken()
+        
+        
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -123,3 +136,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 }
 
+extension UserDefaults {
+    func clear() {
+        guard let domainName = Bundle.main.bundleIdentifier else {
+            return
+        }
+        removePersistentDomain(forName: domainName)
+        synchronize()
+    }
+}

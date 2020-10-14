@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import QuartzCore
 
 class ProductCollectionViewItem: NSCollectionViewItem {
     
@@ -18,10 +19,21 @@ class ProductCollectionViewItem: NSCollectionViewItem {
     @IBOutlet weak var productLocation: NSTextField!
     @IBOutlet weak var productSeller: NSTextField!
     @IBOutlet weak var productImage: NSImageView!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
+        view.makeBackingLayer()
+        view.wantsLayer = true
+        
+        // shadows https://stackoverflow.com/a/32882755/1231365
+        view.wantsLayer = true
+        view.shadow = NSShadow()
+        view.layer?.shadowOpacity = 0.3
+        view.layer?.shadowColor = NSColor.black.cgColor
+        view.layer?.shadowOffset = NSMakeSize(0, 0)
+        view.layer?.shadowRadius = 5
     }
 
     override func mouseDown(with event: NSEvent) {

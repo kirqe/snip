@@ -14,11 +14,11 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" titleVisibility="hidden" id="F0z-JX-Cv5">
+        <window allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" titleVisibility="hidden" id="F0z-JX-Cv5">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="480" height="270"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1177"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
             <value key="minSize" type="size" width="1000" height="500"/>
             <view key="contentView" id="se5-gp-TjO">
                 <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
@@ -44,8 +44,10 @@
                             </connections>
                         </button>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="2482CEBE-309F-430E-AE00-FE6A810086A8" label="Custom View" paletteLabel="Custom View" sizingBehavior="auto" id="tGU-pY-4P1">
+                    <toolbarItem implicitItemIdentifier="2482CEBE-309F-430E-AE00-FE6A810086A8" label="Custom View" paletteLabel="Custom View" id="tGU-pY-4P1">
                         <nil key="toolTip"/>
+                        <size key="minSize" width="400" height="22"/>
+                        <size key="maxSize" width="600" height="22"/>
                         <searchField key="view" wantsLayer="YES" verticalHuggingPriority="750" textCompletion="NO" id="HXD-IN-vhF">
                             <rect key="frame" x="0.0" y="14" width="200" height="22"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>

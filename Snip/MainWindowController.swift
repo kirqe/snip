@@ -14,8 +14,8 @@ class MainWindowController: NSWindowController {
 
     
     @IBAction func myAction(sender: AnyObject) {
-        let myVc = window!.contentViewController as! ProductsCollectionViewController
-        myVc.logText(title: "WC") // make request and send data to collection view
+//        let myVc = window!.contentViewController as! ProductsCollectionViewController
+//        myVc.logText(title: "WC") // make request and send data to collection view
     }
     
     @IBOutlet weak var regularSearchField: NSSearchField!

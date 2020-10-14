@@ -9,59 +9,11 @@
 import Cocoa
 
 
-
 class ProductsCollectionViewController: NSViewController {
-
-    var products: [Product]   = []
-    var nextPage: String = ""
-    var totalNumOfProducts: Int = 0
-
-    func search(term: String) {
-        
-        
-        dataRequest(with: "https://api.ebay.com/buy/browse/v1/item_summary/search?q=\(escape(string: term))", objectType: ProductsPage.self) { (result: Result) in
-            switch result {
-            case .success(let object):
-                print(object.itemSummaries)
-                self.products = object.itemSummaries ?? []
-                self.nextPage = object.next ?? ""
-                self.totalNumOfProducts = object.total ?? 0
-                
-                DispatchQueue.main.async {
-                    self.productsCollectionView.reloadData()
-                }
-                
-            case .failure(let error):
-                print(error)
-            }
-        }
-        
-    }
-    
-    
-    func logText(title: String) {
-        print(title)
-        
-        dataRequest(with: "https://api.ebay.com/buy/browse/v1/item_summary/search?q=blackberry", objectType: ProductsPage.self) { (result: Result) in
-            switch result {
-            case .success(let object):
-                print(object.itemSummaries)
-                self.products = object.itemSummaries!
-                self.nextPage = object.next ?? ""
-                
-                DispatchQueue.main.async {
-                    self.productsCollectionView.reloadData()
-                }
-                
-            case .failure(let error):
-                print(error)
-            }
-        }
-        
-    }
+    var placeholderView = EmptyViewController().view
+    var productsPageVM = ProductsPageViewModel()
     
     @IBOutlet var productsCollectionView: NSCollectionView!
-
     @IBOutlet weak var progressIndicator: NSProgressIndicator!
     
     override func viewDidLoad() {
@@ -70,8 +22,28 @@ class ProductsCollectionViewController: NSViewController {
         
         setCollectionView()
         
-  
+        
+        // fix
+        placeholderView.autoresizingMask = [.width, .height]
+        view.addSubview(placeholderView)
+        
     }
+    
+    func search(term: String) {
+        print("term: \(escape(string: term))")
+
+        
+        progressIndicator.startAnimation(nil)
+        productsPageVM.searchForProduct(term: term) { [weak self]  in
+            DispatchQueue.main.async {
+ 
+                self?.productsCollectionView.scroll(NSPoint(x: 0, y: 0)) // scroll to top
+                self?.productsCollectionView.reloadData()
+                self?.progressIndicator.stopAnimation(nil)
+            }
+        }
+    }
+    
     
     private func setCollectionView() {
         productsCollectionView.delegate = self
@@ -86,97 +58,56 @@ class ProductsCollectionViewController: NSViewController {
         gridLayout.minimumLineSpacing = 10
 
 
-        gridLayout.maximumNumberOfColumns = 3
+        gridLayout.maximumNumberOfColumns = 4
         
         gridLayout.margins = NSEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
         productsCollectionView.collectionViewLayout = gridLayout
+        
     }
     
 }
 
 extension ProductsCollectionViewController: NSCollectionViewDataSource, NSCollectionViewDelegate {
     func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
-        if products.count > 0 {
-//            self.productsCollectionView.backgroundView = nil
-            return products.count
+        if productsPageVM.products.count > 0 {
+            // fix
+            placeholderView.removeFromSuperview()
         }
-//        self.productsCollectionView.backgroundView = EmptyViewController().view
-        return 0
+
+        return productsPageVM.products.count
     }
     
+    
     func collectionView(_ collectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
+        
         let product = productsCollectionView.makeItem(withIdentifier: ProductCollectionViewItem.reuseIdentifier, for: indexPath)
+        
         guard let productCVI = product as? ProductCollectionViewItem else { return product }
-        
-        // set image from url
-        DispatchQueue.global(qos: .background).async {
-            let image: NSImage = NSImage(contentsOf: URL(string: self.products[indexPath.item].image?.imageUrl ?? "")!)!
-            DispatchQueue.main.async {
-                productCVI.productImage.image = image
-            }
-        }
-        
-        let queuedProduct = products[indexPath.item]
-        
-        
-        productCVI.productTitle.stringValue = queuedProduct.title!
-        productCVI.productPrice.stringValue = "\(queuedProduct.price?.value ?? "n/a") \(queuedProduct.price?.currency ?? "n/a")"
-        productCVI.productLocation.stringValue = "\(queuedProduct.itemLocation?.country ?? "n/a") \(queuedProduct.itemLocation?.postalCode ?? "n/a")"
-        productCVI.productSeller.stringValue = "\(queuedProduct.seller?.username ?? "n/a") (\(String(describing: queuedProduct.seller!.feedbackScore!)) ★) \(queuedProduct.seller?.feedbackPercentage ?? "n/a") %"
-        
-        
-        let condition = products[indexPath.item].condition ?? "n/a"
-        
-        switch condition {
-        case "New":
-            productCVI.productCondition.textColor = NSColor.red
-            productCVI.productCondition.font = NSFont(name: "System Heavy Regular", size: 13)
-        case "Open box":
-            productCVI.productCondition.textColor = NSColor.init(deviceRed: 34/255, green: 172/255, blue: 59/255, alpha: 1.0)
-        case "Seller Refurbished":
-            productCVI.productCondition.textColor = NSColor.gray
-        default:
-            productCVI.productCondition.textColor = NSColor.black
-        }
-        productCVI.productCondition.stringValue = condition
-        
-        
 
+        let productViewModel = ProductViewModel(product: (productsPageVM.products[indexPath.item]))
+
+        productViewModel.configure(productCVI)
         return productCVI
     }
     
     
     func collectionView(_ collectionView: NSCollectionView, willDisplay item: NSCollectionViewItem, forRepresentedObjectAt indexPath: IndexPath) {
-        if indexPath.item == self.products.count - 1  && self.products.count < self.totalNumOfProducts {
+        
+        if indexPath.item == productsPageVM.products.count - 1  && productsPageVM.products.count < productsPageVM.totalNumOfProducts {
             
             
-            progressIndicator.startAnimation(self)
-            dataRequest(with: self.nextPage, objectType: ProductsPage.self) { (result: Result) in
-               switch result {
-               case .success(let object):
-//                   print(object.itemSummaries)
-                print(self.nextPage)
-//                   self.products.append(contentsOf: object.itemSummaries!)
-                   self.nextPage = object.next ?? ""
-                   
-                   
-                        let newIndexPath = IndexPath(item: self.products.count, section: 0)
-                        self.products.append(contentsOf: object.itemSummaries!)
-                        DispatchQueue.main.async {
-                             self.productsCollectionView.insertItems(at: [newIndexPath])
-                             self.progressIndicator.stopAnimation(self)
-                        }
-                   
-                   
-                   
-                   
-                   
+            progressIndicator.startAnimation(nil)
+            
+            productsPageVM.loadNextPage() { [weak self] in
+                let newIndexPath = IndexPath(item: (self?.productsPageVM.products.count)!, section: 0)
 
-                   
-               case .failure(let error):
-                   print(error)
-               }
-           }
+                DispatchQueue.main.async {
+                    self?.productsCollectionView.insertItems(at: [newIndexPath])
+                    self?.progressIndicator.stopAnimation(nil)
+                }
+            }
+            
+  
         }
 
 

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15705" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15705"/>
+        <plugIn identifier="com.apple.WebKit2IBPlugin" version="15705"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="AuthorizeWindowController" customModule="Snip" customModuleProvider="target">
+            <connections>
+                <outlet property="authorizeWKView" destination="ulx-Gt-Zrg" id="Rp8-Ih-gCl"/>
+                <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window title="Authorize" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="F0z-JX-Cv5">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
+            <rect key="contentRect" x="710" y="469" width="960" height="480"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1177"/>
+            <value key="minSize" type="size" width="960" height="480"/>
+            <value key="maxSize" type="size" width="960" height="480"/>
+            <view key="contentView" id="se5-gp-TjO">
+                <rect key="frame" x="0.0" y="0.0" width="960" height="480"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <wkWebView wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ulx-Gt-Zrg">
+                        <rect key="frame" x="0.0" y="0.0" width="960" height="480"/>
+                        <wkWebViewConfiguration key="configuration">
+                            <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                            <wkPreferences key="preferences"/>
+                        </wkWebViewConfiguration>
+                    </wkWebView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="ulx-Gt-Zrg" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" id="Lld-v4-L0z"/>
+                    <constraint firstAttribute="trailing" secondItem="ulx-Gt-Zrg" secondAttribute="trailing" id="MHb-gl-zRU"/>
+                    <constraint firstAttribute="bottom" secondItem="ulx-Gt-Zrg" secondAttribute="bottom" id="j3q-kn-5Xx"/>
+                    <constraint firstItem="ulx-Gt-Zrg" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" id="je0-l6-nEK"/>
+                </constraints>
+            </view>
+            <connections>
+                <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
+            </connections>
+            <point key="canvasLocation" x="66" y="86"/>
+        </window>
+    </objects>
+</document>
